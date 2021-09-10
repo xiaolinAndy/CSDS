@@ -15,8 +15,7 @@ python train_extractor_ml.py --path=saved/${mode}/ext/
 python train_full_rl.py --path=saved/${mode}/full --abs_dir=saved/${mode}/abs --ext_dir=saved/${mode}/ext
 python make_eval_references.py --split_mode=period --turn_mode=multi --sum_mode=${mode} --context_mode=both
 python decode_full_model.py --path=saved/${mode}/decode --model_dir=saved/${mode}/full --beam=5 --test
-cp saved/${mode}/decode/output/preds.txt ../../results/${mode}/fast_rl_preds.txt
-cp dataset/refs.txt ../../results/${mode}/fast_rl_refs.txt
+
 
 ## user
 #rm -rf dataset/train
@@ -30,8 +29,7 @@ cp dataset/refs.txt ../../results/${mode}/fast_rl_refs.txt
 #python train_full_rl.py --path=saved/${mode}/full --abs_dir=saved/${mode}/abs --ext_dir=saved/${mode}/ext
 #python make_eval_references.py --split_mode=period --turn_mode=multi --sum_mode=${mode} --context_mode=both
 #python decode_full_model.py --path=saved/${mode}/decode --model_dir=saved/${mode}/full --beam=5 --test
-#cp saved/${mode}/decode/output/preds.txt ../../results/${mode}/fast_rl_preds.txt
-#cp dataset/refs.txt ../../results/${mode}/fast_rl_refs.txt
+
 
 # agent
 #rm -rf dataset/train
@@ -45,5 +43,3 @@ cp dataset/refs.txt ../../results/${mode}/fast_rl_refs.txt
 #python train_full_rl.py --path=saved/${mode}/full --abs_dir=saved/${mode}/abs --ext_dir=saved/${mode}/ext
 #python make_eval_references.py --split_mode=period --turn_mode=multi --sum_mode=${mode} --context_mode=both
 #python decode_full_model.py --path=saved/${mode}/decode --model_dir=saved/${mode}/full --beam=5 --test
-#cp saved/${mode}/decode/output/preds.txt ../../results/${mode}/fast_rl_preds.txt
-#cp dataset/refs.txt ../../results/${mode}/fast_rl_refs.txt
