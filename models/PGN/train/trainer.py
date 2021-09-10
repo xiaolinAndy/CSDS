@@ -415,7 +415,6 @@ class PGNTrainer(object):
 
                 running_avg_loss = self.calc_running_avg_loss(loss, running_avg_loss, self.summary_writer, iter)
                 iter += 1
-
                 if iter % self.args.log_freq == 0:
                     self.summary_writer.flush()
                 print_interval = self.args.log_freq

@@ -20,4 +20,27 @@ Besides, each summary are split into several segments, where each segment repres
 
 ## 3. Usage
 
-Requirements
+### Requirements:
+
+- python == 3.7
+- pytorch == 1.6
+- files2rouge == 2.1.0
+- jieba == 0.42.1
+- numpy == 1.19.1
+- tensorboard == 2.3.0
+- tensorboardx == 2.1
+- cytoolz == 0.11.0
+
+### Instruction for PGN
+
+1. Go to one of the model directory.
+2. Download the CSDS dataset, create a new folder named data and put it under the data folder.
+3. download the [tencent embedding](https://ai.tencent.com/ailab/nlp/en/embedding.html) and put it under the data_utils/embedding folder.
+4. Run the bash file "run.sh" to train and test.
+
+### Instruction for Fast-RL
+
+1. Go to one of the model directory.
+2. Download the CSDS dataset, create a new folder named data and put it under the data folder.
+3. download the [tencent embedding](https://ai.tencent.com/ailab/nlp/en/embedding.html) and put it under the data_utils/embedding folder.
+4. Run the bash file "run.sh" to train and test.
