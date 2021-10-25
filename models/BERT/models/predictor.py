@@ -296,17 +296,18 @@ class Translator(object):
             # Flatten probs into a list of possibilities.
             curr_scores = log_probs / length_penalty
 
-            if(self.args.block_trigram):
-                cur_len = alive_seq.size(1)
-                if(cur_len>3):
-                    for i in range(alive_seq.size(0)):
+            if (self.args.block_trigram):
+                cur_len = alive_seq_roles[k].size(1)
+                if (cur_len > 5):
+                    for i in range(alive_seq_roles[k].size(0)):
                         fail = False
-                        words = [int(w) for w in alive_seq[i]]
+                        words = [int(w) for w in alive_seq_roles[k][i]]
                         words = [self.vocab.ids_to_tokens[w] for w in words]
-                        words = ' '.join(words).replace(' ##','').split()
-                        if(len(words)<=3):
+                        words = ' '.join(words).replace(' ##', '').split()
+                        if (len(words) <= 5):
                             continue
-                        trigrams = [(words[i-1],words[i],words[i+1]) for i in range(1,len(words)-1)]
+                        trigrams = [(words[i - 2], words[i - 1], words[i], words[i + 1], words[i + 2]) for i in
+                                    range(2, len(words) - 2)]
                         trigram = tuple(trigrams[-1])
                         if trigram in trigrams[:-1]:
                             fail = True
