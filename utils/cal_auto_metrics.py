@@ -8,7 +8,7 @@ import scipy.stats
 from moverscore_v2 import get_idf_dict, word_mover_score
 from nltk.translate.bleu_score import corpus_bleu
 
-model_name = ['bert_ext', 'PGN', 'fast_rl', 'fast_rl_mod', 'bert_abs', 'bert_rl_mod']
+model_name = ['bert_ext', 'PGN', 'fast_rl', 'fast_rl_mod', 'bert_abs_block5', 'bert_rl_mod_block5']
 #modes = ['final', 'user', 'agent']
 modes = ['final']
 
@@ -20,10 +20,10 @@ def get_sents_str(file_path):
             sents.append(line)
     return sents
 
-def change_word2id(ref, pred):
+def change_word2id_split(ref, pred):
     ref_id, pred_id = [], []
-    tmp_dict = {}
-    new_index = 0
+    tmp_dict = {'%': 0}
+    new_index = 1
     words = list(ref)
     for w in words:
         if w not in tmp_dict.keys():
@@ -32,6 +32,8 @@ def change_word2id(ref, pred):
             new_index += 1
         else:
             ref_id.append(str(tmp_dict[w]))
+        if w == '。':
+            ref_id.append(str(0))
     words = list(pred)
     for w in words:
         if w not in tmp_dict.keys():
@@ -40,6 +42,8 @@ def change_word2id(ref, pred):
             new_index += 1
         else:
             pred_id.append(str(tmp_dict[w]))
+        if w == '。':
+            pred_id.append(str(0))
     return ' '.join(ref_id), ' '.join(pred_id)
 
 def run_rouge(pred_file, ref_file):
@@ -93,7 +97,7 @@ def calculate(pred_file, ref_file, mode, model):
     #get rouge ids
     ref_ids, pred_ids = [], []
     for ref, pred in zip(refs, preds):
-        ref_id, pred_id = change_word2id(ref, pred)
+        ref_id, pred_id = change_word2id_split(ref, pred)
         ref_ids.append(ref_id)
         pred_ids.append(pred_id)
     with open('ref_ids.txt', 'w') as f:
@@ -103,9 +107,8 @@ def calculate(pred_file, ref_file, mode, model):
         for pred in pred_ids:
             f.write(pred + '\n')
     print('Running rouge for ' + mode + ' ' + model + '-----------------------------')
-    os.system('files2rouge ref_ids.txt pred_ids.txt -s rouge.txt')
+    os.system('files2rouge ref_ids.txt pred_ids.txt -s rouge.txt -e 0')
     rouge_scores = read_rouge_score('rouge.txt')
-    #files2rouge.run('../tmp/pred_ids.txt', '../tmp/ref_ids.txt')
 
     #run bleu
     bleu_preds = [list(s) for s in preds]
@@ -113,14 +116,6 @@ def calculate(pred_file, ref_file, mode, model):
     bleu_score = corpus_bleu(bleu_refs, bleu_preds)
     print('Running BLEU for ' + mode + ' ' + model + '-----------------------------')
     print('BLEU: ', bleu_score)
-
-    # run js
-    js = []
-    for ref, pred in zip(refs, preds):
-        js.append(get_js(ref, pred))
-    avg_js = np.mean(np.array(js))
-    print('Running JS-2 for ' + mode + ' ' + model + '-----------------------------')
-    print('JS-2: ', avg_js)
 
     # run bertscore
     prec, rec, f1 = bert_score.score(preds, refs, lang='zh')
