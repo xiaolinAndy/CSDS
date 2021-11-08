@@ -1,5 +1,5 @@
 # CSDS
-This is the official repo for paper [CSDS: A Fine-grained Chinese Dataset for Customer Service Dialogue Summarization](https://arxiv.org/abs/2108.13139), accepted by EMNLP 2021 main conference.
+This is the official repo for paper [CSDS: A Fine-grained Chinese Dataset for Customer Service Dialogue Summarization](https://aclanthology.org/2021.emnlp-main.365/), accepted by EMNLP 2021 main conference.
 
 ## Update
 
@@ -112,20 +112,28 @@ We thanks for all these researchers who have made their codes publicly available
 
 ### Citation
 
-If you want to cite our paper, please use this temporarily:
+If you want to cite our paper, please use this EMNLP proceeding version:
 
 ```
-@misc{lin2021csds,
-      title={CSDS: A Fine-Grained Chinese Dataset for Customer Service Dialogue Summarization}, 
-      author={Haitao Lin and Liqun Ma and Junnan Zhu and Lu Xiang and Yu Zhou and Jiajun Zhang and Chengqing Zong},
-      year={2021},
-      eprint={2108.13139},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL}
+@inproceedings{lin-etal-2021-csds,
+    title = "{CSDS}: A Fine-Grained {C}hinese Dataset for Customer Service Dialogue Summarization",
+    author = "Lin, Haitao  and
+      Ma, Liqun  and
+      Zhu, Junnan  and
+      Xiang, Lu  and
+      Zhou, Yu  and
+      Zhang, Jiajun  and
+      Zong, Chengqing",
+    booktitle = "Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing",
+    month = nov,
+    year = "2021",
+    address = "Online and Punta Cana, Dominican Republic",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2021.emnlp-main.365",
+    pages = "4436--4451",
+    abstract = "Dialogue summarization has drawn much attention recently. Especially in the customer service domain, agents could use dialogue summaries to help boost their works by quickly knowing customer{'}s issues and service progress. These applications require summaries to contain the perspective of a single speaker and have a clear topic flow structure, while neither are available in existing datasets. Therefore, in this paper, we introduce a novel Chinese dataset for Customer Service Dialogue Summarization (CSDS). CSDS improves the abstractive summaries in two aspects: (1) In addition to the overall summary for the whole dialogue, role-oriented summaries are also provided to acquire different speakers{'} viewpoints. (2) All the summaries sum up each topic separately, thus containing the topic-level structure of the dialogue. We define tasks in CSDS as generating the overall summary and different role-oriented summaries for a given dialogue. Next, we compare various summarization methods on CSDS, and experiment results show that existing methods are prone to generate redundant and incoherent summaries. Besides, the performance becomes much worse when analyzing the performance on role-oriented summaries and topic structures. We hope that this study could benchmark Chinese dialogue summarization and benefit further studies.",
 }
 ```
-
-The EMNLP proceeding version will be given after the official publication.
 
 If you have any issues, please contact with haitao.lin@nlpr.ia.ac.cn
 
