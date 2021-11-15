@@ -388,14 +388,14 @@ class Translator(object):
             src_features = src_features.index_select(0, select_indices.to(torch.long))
             dec_states.map_batch_fn(
                 lambda state, dim: state.index_select(dim, select_indices.to(torch.long)))
-            print('hypo:--------------')
+            #print('hypo:--------------')
             for seqs in hypotheses:
                 for seq in seqs:
                     words = [int(w) for w in seq[1]]
                     words = [self.vocab.ids_to_tokens[w] for w in words]
                     words = ' '.join(words).replace(' ##', '').split()
-                    print(words)
-        exit()
+                    #print(words)
+        #exit()
 
         return results
 
