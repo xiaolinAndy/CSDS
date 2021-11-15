@@ -297,11 +297,11 @@ class Translator(object):
             curr_scores = log_probs / length_penalty
 
             if (self.args.block_trigram):
-                cur_len = alive_seq_roles[k].size(1)
+                cur_len = alive_seq.size(1)
                 if (cur_len > 5):
-                    for i in range(alive_seq_roles[k].size(0)):
+                    for i in range(alive_seq.size(0)):
                         fail = False
-                        words = [int(w) for w in alive_seq_roles[k][i]]
+                        words = [int(w) for w in alive_seq[i]]
                         words = [self.vocab.ids_to_tokens[w] for w in words]
                         words = ' '.join(words).replace(' ##', '').split()
                         if (len(words) <= 5):
