@@ -55,6 +55,7 @@ Besides, each summary are split into several segments, where each segment repres
 - tensorboard == 2.3.0
 - tensorboardx == 2.1
 - cytoolz == 0.11.0
+- transformers == 3.3.1
 
 #### Instruction for PGN
 
