@@ -52,9 +52,9 @@ def cal_rouge(pred_name, ref_name):
 
 def cal_rouge_path(pred_name, ref_name):
     with open(pred_name, 'r') as f:
-        refs = get_sents_str(f)
-    with open(ref_name, 'r') as f:
         preds = get_sents_str(f)
+    with open(ref_name, 'r') as f:
+        refs = get_sents_str(f)
     # write ids
     ref_ids, pred_ids = [], []
     for ref, pred in zip(refs, preds):
